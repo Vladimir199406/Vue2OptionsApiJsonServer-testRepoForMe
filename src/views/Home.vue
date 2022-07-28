@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <ModalWindow v-if="showModal" @close="showModal = false" >
+    <ModalWindow v-if="showModal" @close="showModal = false">
       <h3 slot="header" class="header">custom header</h3>
     </ModalWindow>
   </div>
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style scoped>
-  .header {
-    color: #42b983;
-  }
+.header {
+  color: #42b983;
+}
 </style>

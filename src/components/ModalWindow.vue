@@ -9,6 +9,30 @@
 
           <div class="modal-body">
             <slot name="body"> default body </slot>
+            <ul>
+              <li v-for="(question, index) of questions" :key="question.id">
+                <div v-if="index === questionCounter">
+                  {{ question.name }} ({{ index + 1 }}/{{
+                    question.totalQuestions
+                  }})
+                  <div>
+                    <ul>
+                      <li
+                        v-for="(
+                          questionAnswer, questionIndex
+                        ) of question.answers"
+                        :key="question.answers[questionIndex]"
+                      >
+                        {{ questionAnswer }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </li>
+            </ul>
           </div>
 
           <div class="modal-footer">
@@ -16,6 +40,13 @@
               default footer
               <button class="modal-default-button" @click="$emit('close')">
                 OK
+              </button>
+              <button
+                v-if="questionCounter !== questions.length - 1"
+                class="modal-default-button"
+                @click="nextQuestion"
+              >
+                Next
               </button>
             </slot>
           </div>
@@ -26,10 +57,34 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "ModalWindow",
   props: {
     msg: String,
+  },
+  data() {
+    return {
+      questions: [],
+      questionCounter: 0,
+    };
+  },
+  async created() {
+    try {
+      const res = await axios.get("http://localhost:3001/questions");
+      this.questions = res.data;
+      console.log("questions", this.questions);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  methods: {
+    nextQuestion() {
+      console.log("dsfsdfsd");
+      this.questionCounter = this.questionCounter + 1;
+      //console.log(this.questionCounter);
+    },
   },
 };
 </script>

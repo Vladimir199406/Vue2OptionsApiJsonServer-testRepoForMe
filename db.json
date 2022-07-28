@@ -1,0 +1,55 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "name": "How often do you visit our site?",
+      "answers": [
+        "A couple of times a month",
+        "Once a week",
+        "Few times a week",
+        "Every day",
+        "Several times a day"
+      ],
+      "totalQuestions": "5"
+    },
+    {
+      "id": 2,
+      "name": "Are you comfortable using our site?",
+      "answers": ["Comfortable", "Not very comfortable", "Very uncomfortable"],
+      "totalQuestions": "5"
+    },
+    {
+      "id": 3,
+      "name": "Tell us what exactly you do not like?",
+      "totalQuestions": "5"
+    },
+    {
+      "id": 4,
+      "name": "Tell us what you like most about our site?",
+      "totalQuestions": "5"
+    },
+    {
+      "id": 5,
+      "name": "What changes would you like?",
+      "answers": [
+        "Design change",
+        "Newsletter",
+        "Online consultations",
+        "Your answer"
+      ],
+      "totalQuestions": "5"
+    },
+    {
+      "id": 6,
+      "name": "Is there anything else you want to tell us?",
+      "totalQuestions": "5"
+    }
+  ],
+
+  "answers": [
+    {
+      "id": 1,
+      "answerText": ""
+    }
+  ]
+}
