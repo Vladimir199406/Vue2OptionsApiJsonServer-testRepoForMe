@@ -3,3 +3,5 @@
     <h1>This is a WEB SHOP NL page</h1>
   </div>
 </template>
+
+<style lang="scss"></style>

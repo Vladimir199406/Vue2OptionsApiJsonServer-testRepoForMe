@@ -90,7 +90,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
 .modal-mask {
   position: fixed;
   z-index: 9998;

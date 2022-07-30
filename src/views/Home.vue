@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
 .header {
   color: #42b983;
 }

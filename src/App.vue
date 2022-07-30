@@ -1,35 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/catalog">Catalog</router-link>
-      <router-link to="/tenders">Tenders</router-link> |
-      <router-link to="/trade">Trade</router-link>
-      <router-link to="/web-shop-nl">Web-Shop NL</router-link>
-    </div>
+    <HeaderNav />
     <router-view />
   </div>
 </template>
 
-<style scoped lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+<script>
+import HeaderNav from "./components/HeaderNav.vue";
 
-#nav {
-  padding: 30px;
-  text-align: center;
-  color: #2c3e50;
+export default {
+  name: "App",
+  components: {
+    HeaderNav,
+  },
+};
+</script>
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+<style lang="scss">
 </style>

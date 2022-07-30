@@ -17,3 +17,5 @@ export default {
   name: "ErrorNotFound",
 };
 </script>
+
+<style lang="scss"></style>
