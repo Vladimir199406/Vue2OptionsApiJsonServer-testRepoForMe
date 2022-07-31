@@ -3,53 +3,60 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-          <div class="modal-header">
-            <slot name="header"> default header </slot>
-          </div>
-
-          <div class="modal-body">
-            <slot name="body"> default body </slot>
-            <ul>
-              <li v-for="(question, index) of questions" :key="question.id">
-                <div v-if="index === questionCounter">
-                  {{ question.name }} ({{ index + 1 }}/{{
-                    question.totalQuestions
-                  }})
-                  <div>
-                    <ul>
-                      <li
-                        v-for="(
-                          questionAnswer, questionIndex
-                        ) of question.answers"
-                        :key="question.answers[questionIndex]"
-                      >
-                        {{ questionAnswer }}
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="modal-footer">
-            <slot name="footer">
-              default footer
-              <button class="modal-default-button" @click="$emit('close')">
-                OK
-              </button>
-              <button
-                v-if="questionCounter !== questions.length - 1"
-                class="modal-default-button"
-                @click="nextQuestion"
-              >
-                Next
-              </button>
-            </slot>
-          </div>
+          <button class="modal-container__button" @click="$emit('close')">
+            <img
+              class="modal-container__button--img"
+              src="@/assets/images/close.svg"
+              alt="close"
+            />
+          </button>
+          <section
+            class="modal-header-default modal-container__body-wrapper"
+            v-if="isLoading"
+          >
+            Please wait.
+          </section>
+          <section class="modal-container__body-wrapper" v-else>
+            <div class="modal-body">
+              <h3 class="modal-body__modal-header modal-header-default">
+                Please answer a few questions
+              </h3>
+              <progress-bar
+                :steps="questions.length"
+                :questionCounter="questionCounter"
+              />
+              <ul class="modal-body__list">
+                <!--Questions below-->
+                <question
+                  v-for="(question, index) in questions"
+                  :key="question.id"
+                  :name="question.name"
+                  :totalQuestions="question.totalQuestions"
+                  :index="index"
+                  :questionCounter="questionCounter"
+                  :answers="question.answers"
+                />
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <div class="footer">
+                <button
+                  v-if="questionCounter !== questions.length - 1"
+                  class="footer__modal-default-button-next"
+                  @click="nextQuestion"
+                >
+                  Next
+                </button>
+                <button
+                  v-else
+                  class="footer__modal-default-button-next"
+                  @click.prevent="submitForm"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -58,18 +65,23 @@
 
 <script>
 import axios from "axios";
+import Question from "./Question.vue";
+import ProgressBar from "./ProgressBar.vue";
 
 export default {
   name: "ModalWindow",
-  props: {
-    msg: String,
+  components: {
+    Question,
+    ProgressBar,
   },
   data() {
     return {
       questions: [],
       questionCounter: 0,
+      isLoading: true,
     };
   },
+  props: ["showModal"],
   async created() {
     try {
       const res = await axios.get("http://localhost:3001/questions");
@@ -79,11 +91,13 @@ export default {
       console.log(error);
     }
   },
+  mounted() {
+    this.isLoading = false;
+  },
   methods: {
     nextQuestion() {
       console.log("dsfsdfsd");
       this.questionCounter = this.questionCounter + 1;
-      //console.log(this.questionCounter);
     },
   },
 };
@@ -91,56 +105,72 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+@import "@/assets/styles/variables";
+
+// modal visual
 .modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
   transition: opacity 0.3s ease;
+  width: 100%;
+  z-index: 9998;
+
+  .modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    .modal-container {
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+      font-family: Helvetica, Arial, sans-serif;
+      margin: 0px auto;
+      max-width: 600px;
+      min-height: 404px;
+      position: relative;
+      transition: all 0.3s ease;
+      &__button {
+        background: none;
+        border: none;
+        position: absolute;
+        right: 0;
+        &--img {
+          height: 14px;
+          padding: 10px;
+        }
+      }
+      &__body-wrapper {
+        padding: 20px 38px 20px 41px;
+        .modal-body {
+          margin: 20px 0;
+        }
+        .modal-footer {
+          .footer {
+            &__modal-default-button-next {
+              background-color: $buttonBackgroundDefault;
+              border-radius: 5px;
+              border: none;
+              bottom: 40px;
+              color: #fff;
+              font-size: 14px;
+              height: 40px;
+              left: 41px;
+              line-height: 18px;
+              position: absolute;
+              text-align: center;
+              width: 133px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.modal-container {
-  width: 300px;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
-
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
-
+// transition styles
 .modal-enter {
   opacity: 0;
 }

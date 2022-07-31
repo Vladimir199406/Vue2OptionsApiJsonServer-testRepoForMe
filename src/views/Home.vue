@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <ModalWindow v-if="showModal" @close="showModal = false">
-      <h3 slot="header" class="header">custom header</h3>
-    </ModalWindow>
+    <ModalWindow v-if="showModal" @close="closeModal"></ModalWindow>
   </div>
 </template>
 
@@ -20,11 +18,13 @@ export default {
       showModal: true,
     };
   },
+  methods: {
+    closeModal() {
+      this.showModal = false;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
-.header {
-  color: #42b983;
-}
 </style>
