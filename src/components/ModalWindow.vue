@@ -14,7 +14,14 @@
             class="modal-header-default modal-container__body-wrapper"
             v-if="isLoading"
           >
-            Please wait.
+            Please wait
+            <div class="card is-loading">
+              <div class="image"></div>
+              <div class="content">
+                <h2></h2>
+                <p></p>
+              </div>
+            </div>
           </section>
           <section class="modal-container__body-wrapper" v-else>
             <div class="modal-body">
@@ -31,10 +38,13 @@
                   v-for="(question, index) in questions"
                   :key="question.id"
                   :name="question.name"
-                  :totalQuestions="question.totalQuestions"
+                  :totalQuestions="questions.length"
                   :index="index"
                   :questionCounter="questionCounter"
                   :answers="question.answers"
+                  :text="question.text"
+                  :type="question.type"
+                  :isButtonDisabled="isButtonDisabled"
                 />
               </ul>
             </div>
@@ -44,6 +54,7 @@
                   v-if="questionCounter !== questions.length - 1"
                   class="footer__modal-default-button-next"
                   @click="nextQuestion"
+                  :disabled="isButtonDisabled"
                 >
                   Next
                 </button>
@@ -79,6 +90,7 @@ export default {
       questions: [],
       questionCounter: 0,
       isLoading: true,
+      isButtonDisabled: false,
     };
   },
   props: ["showModal"],
@@ -92,11 +104,10 @@ export default {
     }
   },
   mounted() {
-    this.isLoading = false;
+    setTimeout(() => (this.isLoading = false), 1000);
   },
   methods: {
     nextQuestion() {
-      console.log("dsfsdfsd");
       this.questionCounter = this.questionCounter + 1;
     },
   },
@@ -129,7 +140,7 @@ export default {
       font-family: Helvetica, Arial, sans-serif;
       margin: 0px auto;
       max-width: 600px;
-      min-height: 404px;
+      //min-height: 404px;
       position: relative;
       transition: all 0.3s ease;
       &__button {
@@ -143,7 +154,10 @@ export default {
         }
       }
       &__body-wrapper {
-        padding: 20px 38px 20px 41px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px 38px 40px 41px;
         .modal-body {
           margin: 20px 0;
         }
@@ -159,7 +173,6 @@ export default {
               height: 40px;
               left: 41px;
               line-height: 18px;
-              position: absolute;
               text-align: center;
               width: 133px;
             }
