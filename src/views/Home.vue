@@ -5,8 +5,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import ModalWindow from "../components/ModalWindow.vue";
+import { mapState } from "vuex";
+import ModalWindow from "@/components/ModalWindow.vue";
 
 export default {
   name: "Home",
@@ -18,9 +18,20 @@ export default {
       showModal: true,
     };
   },
+  beforeMount() {
+    if (this.closeModalWindow) {
+      this.showModal = false;
+    }
+  },
+  computed: {
+    ...mapState({
+      closeModalWindow: (state) => state.modal.closeModalWindow,
+    }),
+  },
   methods: {
     closeModal() {
       this.showModal = false;
+      localStorage.setItem("closeModalWindow", true);
     },
   },
 };
