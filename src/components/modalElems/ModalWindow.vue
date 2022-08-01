@@ -1,16 +1,16 @@
 <template>
-  <transition name="modal">
+  <transition v-if="showModal" name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-          <button class="modal-container__button" @click="$emit('close')">
+          <button class="modal-container__button" @click="closeModal">
             <img
               class="modal-container__button--img"
               src="@/assets/images/close.svg"
               alt="close"
             />
           </button>
-          <modal-main :showModal="showModal" />
+          <modal-main @closeModal="closeModal" />
         </div>
       </div>
     </div>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import ModalMain from "./ModalMain.vue";
 
 export default {
@@ -25,7 +26,27 @@ export default {
   components: {
     ModalMain,
   },
-  props: ["showModal"],
+  data() {
+    return {
+      showModal: true,
+    };
+  },
+  beforeMount() {
+    if (this.closeModalWindow) {
+      this.showModal = false;
+    }
+  },
+  computed: {
+    ...mapState({
+      closeModalWindow: (state) => state.modal.closeModalWindow,
+    }),
+  },
+  methods: {
+    closeModal() {
+      this.showModal = false;
+      localStorage.setItem("closeModalWindow", true);
+    },
+  },
 };
 </script>
 

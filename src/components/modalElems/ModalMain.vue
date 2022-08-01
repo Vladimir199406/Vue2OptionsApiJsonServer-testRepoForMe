@@ -100,7 +100,6 @@ export default {
       formData: [],
     };
   },
-  props: ["showModal"],
   computed: {
     textSubmitButton() {
       return this.questionCounter === this.questions.length - 1
@@ -177,7 +176,7 @@ export default {
       }
 
       setTimeout(() => {
-        this.$emit("close");
+        this.$emit("closeModal");
       }, 1000);
     },
   },

@@ -24,7 +24,7 @@ npm install
 npm run serve 
 ```
 
-### Json-Server for development
+### Json-Server for development (app data GET/POST => ./db.json)
 ```
 npm run db:serve
 ```
