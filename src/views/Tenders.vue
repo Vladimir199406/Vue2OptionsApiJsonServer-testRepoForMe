@@ -1,6 +1,6 @@
 <template>
   <div class="tenders">
-    <h1>This is a TENDERS page</h1>
+    <p class="primary-text-styles">This is a TENDERS page</p>
   </div>
 </template>
 

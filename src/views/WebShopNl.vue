@@ -1,6 +1,6 @@
 <template>
   <div class="web-shop-nl">
-    <h1>This is a WEB SHOP NL page</h1>
+    <p class="primary-text-styles">This is a WEB SHOP NL page</p>
   </div>
 </template>
 

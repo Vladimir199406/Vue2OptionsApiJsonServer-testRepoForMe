@@ -1,6 +1,6 @@
 <template>
   <div class="trade">
-    <h1>This is a TRADE page</h1>
+    <p class="primary-text-styles">This is a TRADE page</p>
   </div>
 </template>
 

@@ -1,12 +1,17 @@
 <template>
-  <div class="">
-    <div>
-      <div style="font-size: 30vh">404</div>
-
-      <div class="" style="opacity: 0.4">Oops. Nothing here...</div>
-
+  <div>
+    <div
+      style="
+        font-size: 30vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+      "
+    >
+      404
       <router-link to="/">
-        <button>Go Home</button>
+        <button style="font-size: 3vh">Go Home ?</button>
       </router-link>
     </div>
   </div>
