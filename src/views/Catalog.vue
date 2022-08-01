@@ -1,6 +1,6 @@
 <template>
   <div class="catalog">
-    <h1>This is a CATALOG page</h1>
+    <p class="primary-text-styles">This is a CATALOG page</p>
   </div>
 </template>
 
