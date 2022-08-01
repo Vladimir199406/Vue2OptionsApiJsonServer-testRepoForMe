@@ -11,15 +11,17 @@
         "Several times a day"
       ],
       "type": "radio",
-      "text": false,
       "skipNext": false
     },
     {
       "id": 2,
       "name": "Are you comfortable using our site? (2/5)",
-      "answers": ["Comfortable", "Not very comfortable", "Very uncomfortable"],
+      "answers": [
+        "Comfortable",
+        "Not very comfortable",
+        "Very uncomfortable"
+      ],
       "type": "radio",
-      "text": false,
       "skipNext": true
     },
     {
@@ -27,7 +29,7 @@
       "name": "Tell us what exactly you do not like? (3/5)",
       "answers": [],
       "type": "radio",
-      "text": true,
+      "textarea": true,
       "skipNext": false
     },
     {
@@ -35,7 +37,7 @@
       "name": "Tell us what you like most about our site? (3/5)",
       "answers": [],
       "type": "radio",
-      "text": true,
+      "textarea": true,
       "skipNext": false
     },
     {
@@ -48,7 +50,7 @@
         "Your answer"
       ],
       "type": "checkbox",
-      "text": true,
+      "textarea": true,
       "skipNext": false
     },
     {
@@ -56,15 +58,9 @@
       "name": "Is there anything else you want to tell us? (5/5)",
       "answers": [],
       "type": "radio",
-      "text": true,
+      "textarea": true,
       "skipNext": false
     }
   ],
-
-  "answers": [
-    {
-      "id": 1,
-      "answerText": ""
-    }
-  ]
+  "answers": []
 }

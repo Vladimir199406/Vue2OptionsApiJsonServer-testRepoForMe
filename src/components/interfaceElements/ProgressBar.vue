@@ -2,7 +2,9 @@
   <div class="progress-bar-wrapper">
     <div
       class="progress-bar-wrapper__progress-bar"
-      :style="`width: ${(questionCounter / (steps - 1)) * 100}%`"
+      :style="`width: ${
+        progressCounter <= steps - 1 && (progressCounter / (steps - 1)) * 100
+      }%`"
     ></div>
     <div
       class="progress-bar-wrapper__item"
@@ -10,7 +12,7 @@
       :key="step.id"
       :class="{
         'progress-bar-wrapper__item--completed':
-          questionCounter === index || questionCounter > index,
+          progressCounter === index || progressCounter > index,
       }"
     ></div>
   </div>
@@ -19,7 +21,7 @@
 <script>
 export default {
   name: "ProgressBar",
-  props: ["steps", "questionCounter"],
+  props: ["steps", "progressCounter"],
 };
 </script>
 

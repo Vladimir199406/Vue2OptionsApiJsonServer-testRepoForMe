@@ -6,7 +6,7 @@
 
 <script>
 import { mapState } from "vuex";
-import ModalWindow from "@/components/ModalWindow.vue";
+import ModalWindow from "@/components/modalElems/ModalWindow.vue";
 
 export default {
   name: "Home",

@@ -13,8 +13,41 @@
   margin-bottom: $space12px;
 }
 
-//preloader
+//question
+.question-wrapper {
+  &__title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    line-height: 30px;
+  }
+  &__answers-list {
+    .qanswer-field {
+      align-items: center;
+      display: flex;
+      margin: $space12px 0;
+    }
+  }
+  &__text {
+    border: 2px solid $borderBackgroundDefault;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    margin-top: $space12px;
+    width: 259px;
+    height: 74px;
+    &:focus {
+      background: $inputBackgroundDefault;
+      border: 2px solid $borderBackgroundDefault;
+      outline: none;
+    }
+  }
+  &__do-not-want {
+    align-items: center;
+    display: flex;
+  }
+}
 
+//preloader
 .card.is-loading {
   .image,
   h2,
