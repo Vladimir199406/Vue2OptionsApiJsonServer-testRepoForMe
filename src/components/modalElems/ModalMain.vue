@@ -79,7 +79,8 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapState, mapActions } from "vuex";
+
 import LoadingSkeleton from "./LoadingSkeleton.vue";
 import ProgressBar from "@/components/interfaceElements/ProgressBar.vue";
 
@@ -91,7 +92,6 @@ export default {
   },
   data() {
     return {
-      questions: [],
       questionCounter: 0,
       progressCounter: 0,
       isLoading: true,
@@ -101,6 +101,9 @@ export default {
     };
   },
   computed: {
+    ...mapState({
+      questions: (state) => state.questions.questions,
+    }),
     textSubmitButton() {
       return this.questionCounter === this.questions.length - 1
         ? "Submit"
@@ -120,18 +123,13 @@ export default {
     },
   },
   async created() {
-    try {
-      const res = await axios.get("http://localhost:3001/questions");
-      this.questions = res.data;
-      console.log("questions", this.questions);
-    } catch (error) {
-      console.log(error);
-    }
+    this.getQuestions();
   },
   mounted() {
     setTimeout(() => (this.isLoading = false), 1000);
   },
   methods: {
+    ...mapActions(["getQuestions", "sendAnswersData"]),
     saveCurrentStepData() {
       let item = {
         title: this.currentQuestion.name,
@@ -162,18 +160,10 @@ export default {
       this.textAnswer = "";
     },
     async submitForm() {
-      try {
-        const res = await axios.post("http://localhost:3001/answers", {
-          name: this.formData,
-        });
+      this.sendAnswersData(this.formData);
 
-        this.formData = [...this.formData, res.data];
-        this.checkListAnswers = [];
-        this.textAnswer = "";
-        this.formData = [];
-      } catch (error) {
-        console.error(error);
-      }
+      this.checkListAnswers = [];
+      this.textAnswer = "";
 
       setTimeout(() => {
         this.$emit("closeModal");

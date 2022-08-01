@@ -50,7 +50,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import "@/assets/styles/variables";
 
@@ -76,7 +75,6 @@ export default {
       font-family: Helvetica, Arial, sans-serif;
       margin: 0px auto;
       max-width: 600px;
-      //min-height: 404px;
       position: relative;
       transition: all 0.3s ease;
       &__button {
