@@ -1,8 +1,85 @@
+//modal header
 .modal-header-default {
-    color: #000;
-    font-weight: 700;
-    font-size: 18px;
+  color: $blackDefault;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+  margin-bottom: 51px;
+}
+
+//margin below
+.answer-bottom {
+  margin-bottom: $space12px;
+}
+
+//question
+.question-wrapper {
+  &__title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 30px;
     line-height: 30px;
-    text-align: center;
-    margin-bottom: 51px;
+  }
+  &__answers-list {
+    .qanswer-field {
+      align-items: center;
+      display: flex;
+      margin: $space12px 0;
+    }
+  }
+  &__text {
+    border: 2px solid $borderBackgroundDefault;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    margin-top: $space12px;
+    width: 259px;
+    height: 74px;
+    &:focus {
+      background: $inputBackgroundDefault;
+      border: 2px solid $borderBackgroundDefault;
+      outline: none;
+    }
+  }
+  &__do-not-want {
+    align-items: center;
+    display: flex;
+  }
+}
+
+//preloader
+.card.is-loading {
+  .image,
+  h2,
+  p {
+    animation: 1.5s shine linear infinite;
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+  }
+
+  .image {
+    border-bottom-left-radius: $zeroDefault;
+    border-bottom-right-radius: $zeroDefault;
+    height: 100px;
+    margin-bottom:  $space20px;
+    margin-top:  $space20px;
+  }
+
+  h2 {
+    height: 30px;
+    margin-bottom:  $space20px;
+  }
+
+  p {
+    height: 70px;
+    margin-bottom: $space20px;
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
 }

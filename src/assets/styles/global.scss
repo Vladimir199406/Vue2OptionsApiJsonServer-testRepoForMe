@@ -3,57 +3,196 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: $zeroDefault;
-	padding: $zeroDefault;
-	border: $zeroDefault;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: $zeroDefault;
+  padding: $zeroDefault;
+  border: $zeroDefault;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: $zeroDefault;
+  border-collapse: collapse;
+  border-spacing: $zeroDefault;
 }
-
-//buttons
-button {
-	cursor: pointer;
-}
-
 
 // fonts
 * {
-	font-family: 'Roboto Mono', monospace, Verdana, Arial, Helvetica, sans-serif !important;
+  font-family: "Roboto Mono", monospace, Verdana, Arial, Helvetica, sans-serif !important;
+}
+
+//buttons
+button, label {
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+//inputs
+
+input[type="radio"] {
+  &::before {
+    border-radius: 50%;
+  }
+}
+
+input[type="checkbox"] {
+  &::before {
+    border-radius: 5px;
+  }
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+  margin-right: 15px;
+  position: relative;
+  width: 18px;
+  &::before {
+    background-color: $inputBackgroundDefault;
+    border: 2px solid $borderBackgroundDefault;
+    content: "";
+    height: 18px;
+    position: absolute;
+    top: -4px;
+    width: 18px;
+  }
+  &::after {
+    content: url("../images/arrowToCheck.svg");
+    color: $whiteDefault;
+    display: none;
+    font-size: 14px;
+    font-weight: bold;
+    left: 6px;
+    position: absolute;
+    top: -4px;
+  }
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  &:checked {
+    &::before {
+      background-color: $borderBackgroundDefault;
+    }
+    &::after {
+      display: inline-block;
+    }
+  }
 }

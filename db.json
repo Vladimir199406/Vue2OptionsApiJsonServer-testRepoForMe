@@ -2,7 +2,7 @@
   "questions": [
     {
       "id": 1,
-      "name": "How often do you visit our site?",
+      "name": "How often do you visit our site? (1/5)",
       "answers": [
         "A couple of times a month",
         "Once a week",
@@ -10,46 +10,57 @@
         "Every day",
         "Several times a day"
       ],
-      "totalQuestions": "5"
+      "type": "radio",
+      "skipNext": false
     },
     {
       "id": 2,
-      "name": "Are you comfortable using our site?",
-      "answers": ["Comfortable", "Not very comfortable", "Very uncomfortable"],
-      "totalQuestions": "5"
+      "name": "Are you comfortable using our site? (2/5)",
+      "answers": [
+        "Comfortable",
+        "Not very comfortable",
+        "Very uncomfortable"
+      ],
+      "type": "radio",
+      "skipNext": true
     },
     {
       "id": 3,
-      "name": "Tell us what exactly you do not like?",
-      "totalQuestions": "5"
+      "name": "Tell us what exactly you do not like? (3/5)",
+      "answers": [],
+      "type": "radio",
+      "textarea": true,
+      "skipNext": false
     },
     {
       "id": 4,
-      "name": "Tell us what you like most about our site?",
-      "totalQuestions": "5"
+      "name": "Tell us what you like most about our site? (3/5)",
+      "answers": [],
+      "type": "radio",
+      "textarea": true,
+      "skipNext": false
     },
     {
       "id": 5,
-      "name": "What changes would you like?",
+      "name": "What changes would you like? (4/5)",
       "answers": [
         "Design change",
         "Newsletter",
         "Online consultations",
         "Your answer"
       ],
-      "totalQuestions": "5"
+      "type": "checkbox",
+      "textarea": true,
+      "skipNext": false
     },
     {
       "id": 6,
-      "name": "Is there anything else you want to tell us?",
-      "totalQuestions": "5"
+      "name": "Is there anything else you want to tell us? (5/5)",
+      "answers": [],
+      "type": "radio",
+      "textarea": true,
+      "skipNext": false
     }
   ],
-
-  "answers": [
-    {
-      "id": 1,
-      "answerText": ""
-    }
-  ]
+  "answers": []
 }
